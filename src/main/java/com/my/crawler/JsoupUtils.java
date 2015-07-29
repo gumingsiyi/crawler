@@ -13,10 +13,10 @@ import java.util.List;
  */
 public class JsoupUtils {
 	
-    public static List<String> getAttrsByClass(String content, String className, String attr) {/*¸ù¾İÀàÃûÈ¡¶à¸öÏàÍ¬ÀàÃûµÄ¿éµÄÄ³¸öÊôĞÔµÄÖµ*/
+    public static List<String> getAttrsByClass(String content, String className, String attr) {/*æ ¹æ®ç±»åå–å¤šä¸ªç›¸åŒç±»åçš„å—çš„æŸä¸ªå±æ€§çš„å€¼*/
 
         List<String> result = new ArrayList<String>();
-        Document doc = Jsoup.parse(content, "UTF-8");//½âÎöhtmlÎÄµµ
+        Document doc = Jsoup.parse(content, "UTF-8");//è§£æhtmlæ–‡æ¡£
         Elements elements = doc.getElementsByClass(className);
         for (Element link : elements) {
             String linkHref = link.attr(attr);
@@ -26,10 +26,10 @@ public class JsoupUtils {
         return result;
     }
     
-    public static String getAttrByClass(String content, String className, String attr) {/*¸ù¾İÀàÃûÈ¡¸Ã¿éµÄÄ³¸öÊôĞÔµÄÖµ*/
+    public static String getAttrByClass(String content, String className, String attr) {/*æ ¹æ®ç±»åå–è¯¥å—çš„æŸä¸ªå±æ€§çš„å€¼*/
 
         
-        Document doc = Jsoup.parse(content, "UTF-8");//½âÎöhtmlÎÄµµ
+        Document doc = Jsoup.parse(content, "UTF-8");//è§£æhtmlæ–‡æ¡£
         Elements elements = doc.getElementsByClass(className);
         
         String result = elements.attr(attr);
@@ -37,10 +37,10 @@ public class JsoupUtils {
         return result;
     }
 
-    public static List<String> getTextsByClass(String content, String className) {/*¸ù¾İÀàÃûÈ¡¶à¸öÏàÍ¬ÀàÃûµÄ¿éµÄÎÄ±¾Öµ*/
+    public static List<String> getTextsByClass(String content, String className) {/*æ ¹æ®ç±»åå–å¤šä¸ªç›¸åŒç±»åçš„å—çš„æ–‡æœ¬å€¼*/
 
         List<String> result = new ArrayList<String>();
-        Document doc = Jsoup.parse(content, "UTF-8");//½âÎöhtmlÎÄµµ
+        Document doc = Jsoup.parse(content, "UTF-8");//è§£æhtmlæ–‡æ¡£
         Elements elements = doc.getElementsByClass(className);
         for (Element link : elements) {
             String text = link.text();
@@ -50,10 +50,10 @@ public class JsoupUtils {
         return result;
     }
     
-    public static List<String> selectTexts(String content, String s) {/*¸ù¾İÀàÃûÈ¡¶à¸öÏàÍ¬ÀàÃûµÄ¿éµÄÎÄ±¾Öµ*/
+    public static List<String> selectTexts(String content, String s) {/*æ ¹æ®ç±»åå–å¤šä¸ªç›¸åŒç±»åçš„å—çš„æ–‡æœ¬å€¼*/
 
         List<String> result = new ArrayList<String>();
-        Document doc = Jsoup.parse(content, "UTF-8");//½âÎöhtmlÎÄµµ
+        Document doc = Jsoup.parse(content, "UTF-8");//è§£æhtmlæ–‡æ¡£
         Elements elements = doc.select(s);
         for (Element link : elements) {
             String text = link.text();
@@ -63,9 +63,9 @@ public class JsoupUtils {
         return result;
     }
     
-    public static String getOneTextByClass(String content, String className) {/*¸ù¾İÀàÃûÈ¡ÄÚÈİ*/
+    public static String getOneTextByClass(String content, String className) {/*æ ¹æ®ç±»åå–å†…å®¹*/
 
-        Document doc = Jsoup.parse(content, "UTF-8");//½âÎöhtmlÎÄµµ
+        Document doc = Jsoup.parse(content, "UTF-8");//è§£æhtmlæ–‡æ¡£
         Elements elements = doc.getElementsByClass(className);
 
         for (Element link : elements) {
@@ -76,9 +76,9 @@ public class JsoupUtils {
         return "";
     }
     
-    public static String getOneTextByTag(String content, String TagName) {/*¸ù¾İ±êÇ©ÃûÈ¡ÄÚÈİ*/
+    public static String getOneTextByTag(String content, String TagName) {/*æ ¹æ®æ ‡ç­¾åå–å†…å®¹*/
 
-        Document doc = Jsoup.parse(content, "UTF-8");//½âÎöhtmlÎÄµµ
+        Document doc = Jsoup.parse(content, "UTF-8");//è§£æhtmlæ–‡æ¡£
         Elements elements = doc.getElementsByTag(TagName);
 
         for (Element link : elements) {
@@ -90,9 +90,9 @@ public class JsoupUtils {
     }
     
 
-    public static String selectS(String content, String s) {/*Ñ¡ÔñÆ÷sÏÂµÄÎÄ±¾ĞÅÏ¢*/
+    public static String selectS(String content, String s) {/*é€‰æ‹©å™¨sä¸‹çš„æ–‡æœ¬ä¿¡æ¯*/
 
-        Document doc = Jsoup.parse(content, "UTF-8");//½âÎöhtmlÎÄµµ
+        Document doc = Jsoup.parse(content, "UTF-8");//è§£æhtmlæ–‡æ¡£
         Elements elements = doc.select(s);
 
         for (Element element : elements) {
@@ -102,10 +102,10 @@ public class JsoupUtils {
         return null;
     }
     
-    public static List<String> selectSAttr(String content, String s, String attr) {/*Ñ¡ÔñÆ÷sÏÂµÄ¶à¸öÏàÍ¬¿éµÄÄ³ÊôĞÔµÄÖµ*/
+    public static List<String> selectSAttr(String content, String s, String attr) {/*é€‰æ‹©å™¨sä¸‹çš„å¤šä¸ªç›¸åŒå—çš„æŸå±æ€§çš„å€¼*/
 
     	List<String> result = new ArrayList<String>();
-        Document doc = Jsoup.parse(content, "UTF-8");//½âÎöhtmlÎÄµµ
+        Document doc = Jsoup.parse(content, "UTF-8");//è§£æhtmlæ–‡æ¡£
         Elements elements = doc.select(s);
 
         for (Element link : elements) {

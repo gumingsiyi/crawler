@@ -27,13 +27,13 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 public class MysqlUtils {
 
     public static void addProducts(List<Product> products) throws Exception {
-        // 1.×¢²áÇı¶¯
+        // 1.æ³¨å†Œé©±åŠ¨
         Class.forName("com.mysql.jdbc.Driver");
 
-        // 2.½¨Á¢Á¬½Ó url¸ñÊ½ - JDBC:×ÓĞ­Òé:×ÓÃû³Æ//Ö÷»úÃû:¶Ë¿Ú/Êı¾İ¿âÃû£¿ÊôĞÔÃû=ÊôĞÔÖµ&¡­
+        // 2.å»ºç«‹è¿æ¥ urlæ ¼å¼ - JDBC:å­åè®®:å­åç§°//ä¸»æœºå:ç«¯å£/æ•°æ®åº“åï¼Ÿå±æ€§å=å±æ€§å€¼&â€¦
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/crawler", "root", "");
 
-        // 3.´´½¨Óï¾ä
+        // 3.åˆ›å»ºè¯­å¥
         Statement st = conn.createStatement();
 
         for (Product product : products) {
@@ -46,16 +46,16 @@ public class MysqlUtils {
                     "','"+pics.get(0)+"','"+pics.get(1)+"','"+pics.get(2)+"');");
         }
 
-        // // 4.Ö´ĞĞÓï¾ä
+        // // 4.æ‰§è¡Œè¯­å¥
         // ResultSet rs = st.executeQuery("select * from user");
         //
-        // // 5.´¦Àí½á¹û
+        // // 5.å¤„ç†ç»“æœ
         // while (rs.next()) {
         // System.out.println(rs.getObject(1) + "\t" + rs.getObject(2) + "\t" + rs.getObject(3) + "\t" +
         // rs.getObject(4));
         // }
         //
-        // // 6.ÊÍ·Å×ÊÔ´
+        // // 6.é‡Šæ”¾èµ„æº
         // rs.close();
         // st.close();
         // conn.close();
@@ -63,13 +63,13 @@ public class MysqlUtils {
 
     public static void addProduct(Product product) throws Exception {
 
-        // 1.×¢²áÇı¶¯
+        // 1.æ³¨å†Œé©±åŠ¨
         Class.forName("com.mysql.jdbc.Driver");
 
-        // 2.½¨Á¢Á¬½Ó url¸ñÊ½ - JDBC:×ÓĞ­Òé:×ÓÃû³Æ//Ö÷»úÃû:¶Ë¿Ú/Êı¾İ¿âÃû£¿ÊôĞÔÃû=ÊôĞÔÖµ&¡­
+        // 2.å»ºç«‹è¿æ¥ urlæ ¼å¼ - JDBC:å­åè®®:å­åç§°//ä¸»æœºå:ç«¯å£/æ•°æ®åº“åï¼Ÿå±æ€§å=å±æ€§å€¼&â€¦
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/crawler", "root", "");
 
-        // 3.´´½¨Óï¾ä
+        // 3.åˆ›å»ºè¯­å¥
         Statement st = conn.createStatement();
 
             List<String> pics = product.getPic();
@@ -89,13 +89,13 @@ public class MysqlUtils {
     @SuppressWarnings("unused")
 	public static void addProduct(Product product, String keyWord) throws Exception {
 
-        // 1.×¢²áÇı¶¯
+        // 1.æ³¨å†Œé©±åŠ¨
         Class.forName("com.mysql.jdbc.Driver");
 
-        // 2.½¨Á¢Á¬½Ó url¸ñÊ½ - JDBC:×ÓĞ­Òé:×ÓÃû³Æ//Ö÷»úÃû:¶Ë¿Ú/Êı¾İ¿âÃû£¿ÊôĞÔÃû=ÊôĞÔÖµ&¡­
+        // 2.å»ºç«‹è¿æ¥ urlæ ¼å¼ - JDBC:å­åè®®:å­åç§°//ä¸»æœºå:ç«¯å£/æ•°æ®åº“åï¼Ÿå±æ€§å=å±æ€§å€¼&â€¦
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/crawler", "root", "");
 
-        // 3.´´½¨Óï¾ä
+        // 3.åˆ›å»ºè¯­å¥
         Statement st = conn.createStatement();
         
         List<String> pics = product.getPic();
@@ -105,16 +105,16 @@ public class MysqlUtils {
         
         String sql_keyWord = "select * from product where product_code ='"+ keyWord +"'";
         ResultSet rs = st.executeQuery(sql_keyWord);
-        if(rs.next()){//ÒÑÓĞÕâÌõÊı¾İ
+        if(rs.next()){//å·²æœ‰è¿™æ¡æ•°æ®
         	if(rs.getString("title").equals(product.getTitle())&&rs.getString("was").equals(product.getWas())&&
         			rs.getString("now").equals(product.getNow())&&rs.getString("descp").equals(product.getDescp())&&
         			rs.getString("pic1").equals(pics.get(0))&&rs.getString("pic2").equals(pics.get(1))&&
-        			rs.getString("pic3").equals(pics.get(2))){//×Ö¶ÎÊı¾İ¶¼Ã»±ä»¯£¬¾Í²»×÷´¦Àí
+        			rs.getString("pic3").equals(pics.get(2))){//å­—æ®µæ•°æ®éƒ½æ²¡å˜åŒ–ï¼Œå°±ä¸ä½œå¤„ç†
        	
-				System.out.println("Êı¾İÎŞ±ä»¯");
+				System.out.println("æ•°æ®æ— å˜åŒ–");
 				return;
         	}
-        	else{//Ö»Òª×Ö¶ÎÊı¾İÓĞ±ä»¯£¬¾Í¸üĞÂ
+        	else{//åªè¦å­—æ®µæ•°æ®æœ‰å˜åŒ–ï¼Œå°±æ›´æ–°
         		
         		String sql_update = "update product set title='"+ product.getTitle() +"',was='"+ product.getWas() +"',now='"+ 
         							product.getNow() +"',descp='"+ product.getDescp() +"',pic1='"+ pics.get(0) +"',pic2='"+ pics.get(1) +
@@ -125,7 +125,7 @@ public class MysqlUtils {
         		st.executeUpdate(sql_update);
         	}
         }
-        else{//»¹Ã»ÓĞÕâÌõÊı¾İ£¬¾Í²åÈëÊı¾İ
+        else{//è¿˜æ²¡æœ‰è¿™æ¡æ•°æ®ï¼Œå°±æ’å…¥æ•°æ®
         	
             String sql = "INSERT INTO `crawler`.`product`(`title`,`was`,`now`,`descp`,`product_code`,`pic1`,`pic2`,`pic3`)\n" +
                 "VALUES (\""+ product.getTitle() +"\",\""+product.getWas()+"\",\""+product.getNow()+"\",\""+product.getDescp()+"\",\""+product.getProductCode()+
@@ -143,14 +143,14 @@ public class MysqlUtils {
 
     public static void addTggoods(TGGoods goods, String goodsSn, int brandId, String smallPic) throws Exception {
 
-        // 1.×¢²áÇı¶¯
+        // 1.æ³¨å†Œé©±åŠ¨
         Class.forName("com.mysql.jdbc.Driver");
 
-        // 2.½¨Á¢Á¬½Ó url¸ñÊ½ - JDBC:×ÓĞ­Òé:×ÓÃû³Æ//Ö÷»úÃû:¶Ë¿Ú/Êı¾İ¿âÃû£¿ÊôĞÔÃû=ÊôĞÔÖµ&¡­
+        // 2.å»ºç«‹è¿æ¥ urlæ ¼å¼ - JDBC:å­åè®®:å­åç§°//ä¸»æœºå:ç«¯å£/æ•°æ®åº“åï¼Ÿå±æ€§å=å±æ€§å€¼&â€¦
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/muyin_db", "root", "root");
-//        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/muyin_db", "root", "");//±¾µØÊı¾İ¿â
+//        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/muyin_db", "root", "");//æœ¬åœ°æ•°æ®åº“
 
-        // 3.´´½¨Óï¾ä
+        // 3.åˆ›å»ºè¯­å¥
         Statement st = conn.createStatement();
 
         List<String> colors = goods.getColor();
@@ -162,46 +162,46 @@ public class MysqlUtils {
 		}
 
 
-        String sql_attrColorId = "select * from t_g_attribute where cat_id ='"+ goods.getCatId() +"' and attr_name='ÑÕÉ«'";
+        String sql_attrColorId = "select * from t_g_attribute where cat_id ='"+ goods.getCatId() +"' and attr_name='é¢œè‰²'";
         ResultSet rs_attrColorId = st.executeQuery(sql_attrColorId);
         int attr_id=0;
         if(rs_attrColorId.next()){
         	attr_id = rs_attrColorId.getInt("attr_id");
         }
-//        System.out.println(attr_id);//²âÊÔ
+//        System.out.println(attr_id);//æµ‹è¯•
         String sql_rangeValue = "select * from t_g_attr_range where attr_id='"+ attr_id +"'";
         ResultSet rs_rangeValue = st.executeQuery(sql_rangeValue);
         List<String> rangeValue = new ArrayList<String>();
         while(rs_rangeValue.next()){
         	rangeValue.add(rs_rangeValue.getString("rangeValue"));
         }
-        if(rangeValue.size()>0){//ÒÑÓĞÊôĞÔÖµ£¬×öÅĞ¶Ï
+        if(rangeValue.size()>0){//å·²æœ‰å±æ€§å€¼ï¼Œåšåˆ¤æ–­
         	for(int i=0;i<colors.size();i++){
         		Boolean flag = true;
         		for(int j=0;j<rangeValue.size();j++){
-//        			System.out.println(rs_rangeValue.getString("rangeValue")+"lallalalala");//²âÊÔ
+//        			System.out.println(rs_rangeValue.getString("rangeValue")+"lallalalala");//æµ‹è¯•
         			if(rangeValue.get(j).equals(colors.get(i))){
         				flag = false;
         			}
         		}//
-        		if(flag){//ÅĞ¶ÏÄ³¸öÊôĞÔÖµ»¹Ã»´æÈë£¬¾Í²åÈë
+        		if(flag){//åˆ¤æ–­æŸä¸ªå±æ€§å€¼è¿˜æ²¡å­˜å…¥ï¼Œå°±æ’å…¥
         			String sql_tgattrrange = "INSERT INTO `muyin_db`.`t_g_attr_range`(`attr_id`,`rangeValue`)\n" +
         	                "VALUES (\""+ attr_id +"\",\""+colors.get(i)+"\");";
         			System.out.println(sql_tgattrrange);
         			st.executeUpdate(sql_tgattrrange);
         		}
-        		else{//Ä³¸öÊôĞÔÖµÒÑ¾­´æÈë£¬²»×÷´¦Àí
-        			System.out.println("À©Õ¹ÊôĞÔÖµÒÑ´æÔÚ");//²âÊÔ
+        		else{//æŸä¸ªå±æ€§å€¼å·²ç»å­˜å…¥ï¼Œä¸ä½œå¤„ç†
+        			System.out.println("æ‰©å±•å±æ€§å€¼å·²å­˜åœ¨");//æµ‹è¯•
         		}
 
         	}
         }
-        else{//»¹Ã»ÓĞÊôĞÔÖµ£¬¾ÍÖ±½Ó²åÈë
+        else{//è¿˜æ²¡æœ‰å±æ€§å€¼ï¼Œå°±ç›´æ¥æ’å…¥
         	for(int j=0;j<colors.size();j++){
         		String sql_tgattrrange = "INSERT INTO `muyin_db`.`t_g_attr_range`(`attr_id`,`rangeValue`)\n" +
     	                "VALUES (\""+ attr_id +"\",\""+colors.get(j)+"\");";
         		System.out.println(sql_tgattrrange);
-//        		System.out.println("66666666");//²âÊÔ
+//        		System.out.println("66666666");//æµ‹è¯•
         		st.executeUpdate(sql_tgattrrange);
         	}
         }
@@ -210,14 +210,14 @@ public class MysqlUtils {
 
         String sql_keyWord = "select * from t_g_goods where goods_sn ='"+ goodsSn +"' and brand_id ='"+ brandId +"'";
         ResultSet rs = st.executeQuery(sql_keyWord);
-        if(rs.next()){//ÒÑÓĞÕâÌõÊı¾İ
+        if(rs.next()){//å·²æœ‰è¿™æ¡æ•°æ®
         	if(rs.getString("goods_name").equals(goods.getGoodsName())&&rs.getDouble("o_price")==goods.getoPrice()&&
-        			rs.getDouble("n_price")==goods.getnPrice()&&rs.getInt("cat_id")==goods.getCatId()){//×Ö¶ÎÊı¾İ¶¼Ã»±ä»¯£¬¾Í²»×÷´¦Àí
+        			rs.getDouble("n_price")==goods.getnPrice()&&rs.getInt("cat_id")==goods.getCatId()){//å­—æ®µæ•°æ®éƒ½æ²¡å˜åŒ–ï¼Œå°±ä¸ä½œå¤„ç†
 
-				System.out.println("ÉÌÆ·Êı¾İÎŞ±ä»¯");
+				System.out.println("å•†å“æ•°æ®æ— å˜åŒ–");
 //				return;
         	}
-        	else{//Ö»Òª×Ö¶ÎÊı¾İÓĞ±ä»¯£¬¾Í¸üĞÂ
+        	else{//åªè¦å­—æ®µæ•°æ®æœ‰å˜åŒ–ï¼Œå°±æ›´æ–°
 
         		String sql_update = "update t_g_goods set goods_name='"+ goods.getGoodsName() +"',o_price='"+ goods.getoPrice() +"',n_price='"+
         				goods.getnPrice() +"',cat_id='"+ goods.getCatId() +"' where goods_sn ='"+ goodsSn +"' and brand_id ='"+ brandId +"'";
@@ -227,7 +227,7 @@ public class MysqlUtils {
         		st.executeUpdate(sql_update);
         	}
         }
-        else{//»¹Ã»ÓĞÕâÌõÊı¾İ£¬¾Í²åÈëÊı¾İ
+        else{//è¿˜æ²¡æœ‰è¿™æ¡æ•°æ®ï¼Œå°±æ’å…¥æ•°æ®
 
             String sql = "INSERT INTO `muyin_db`.`t_g_goods`(`goods_name`,`o_price`,`n_price`,`goods_desc`,`goods_sn`,`g_url`,`brand_id`,`add_time`,`cat_id`)\n" +
                 "VALUES (\""+ goods.getGoodsName() +"\",\""+goods.getoPrice()+"\",\""+goods.getnPrice()+"\",\""+goods.getGoodsDesc()+"\",\""+goods.getGoodsSn()+
@@ -245,7 +245,7 @@ public class MysqlUtils {
         ResultSet rs_goodsID = st.executeQuery(sql_goodsID);
         if(rs_goodsID.next()){
         	int goodsId = rs_goodsID.getInt("goods_id");
-        	//ÉÌÆ·À©Õ¹ÊôĞÔ´æÈë
+        	//å•†å“æ‰©å±•å±æ€§å­˜å…¥
         	String sql_CatRangeId = "select * from t_g_attr_range where attr_id='"+ attr_id +"' and rangeValue='"+ colors.get(0) +"'";
             ResultSet rs_CatRangeId = st.executeQuery(sql_CatRangeId);
         	if(rs_CatRangeId.next()){
@@ -253,7 +253,7 @@ public class MysqlUtils {
             	String sql_goodsId = "select * from t_g_goods_attr where goods_id='"+ goodsId +"'";
                 ResultSet rs_goodsId = st.executeQuery(sql_goodsId);
             	if(rs_goodsId.next()){
-            		//ÒÑ´æÔÚ¸ÃÉÌÆ·¾Í²»²åÈëÊı¾İ
+            		//å·²å­˜åœ¨è¯¥å•†å“å°±ä¸æ’å…¥æ•°æ®
             	}
             	else{
             		String sql_goodsAttr = "INSERT INTO `muyin_db`.`t_g_goods_attr`(`goods_id`,`attr_range_id`)\n" +
@@ -262,21 +262,21 @@ public class MysqlUtils {
             		st.executeUpdate(sql_goodsAttr);
             	}
             }
-        	//Í¼Æ¬´æÈë
+        	//å›¾ç‰‡å­˜å…¥
         	String sql_goods_img = "select * from t_g_goods_img where goods_id='"+ goodsId +"'";
         	ResultSet rs_goods_img = st.executeQuery(sql_goods_img);
         	if(rs_goods_img.next()){
-        		//¸ÃÉÌÆ·Í¼Æ¬ÒÑ´æÔÚ£¬²»²åÈë
-        		System.out.println("Í¼Æ¬ÒÑ´æÔÚ");
+        		//è¯¥å•†å“å›¾ç‰‡å·²å­˜åœ¨ï¼Œä¸æ’å…¥
+        		System.out.println("å›¾ç‰‡å·²å­˜åœ¨");
         		//-----------------------------------------------------------//
-//        		System.out.println(pics.get(0));//²âÊÔ
-        		List<String> imgUrl = downloadPic(pics, 1);//´óÍ¼
-        		String smallImgUrl = downloadSmallPic(smallPic, 1);//Ğ¡Í¼Ò»ÕÅ
-        		//É¾³ıÔ­À´¸ÃÉÌÆ·ËùÓĞµÄÍ¼Æ¬Â·¾¶
+//        		System.out.println(pics.get(0));//æµ‹è¯•
+        		List<String> imgUrl = downloadPic(pics, 1);//å¤§å›¾
+        		String smallImgUrl = downloadSmallPic(smallPic, 1);//å°å›¾ä¸€å¼ 
+        		//åˆ é™¤åŸæ¥è¯¥å•†å“æ‰€æœ‰çš„å›¾ç‰‡è·¯å¾„
         		String sql_del_goodsimg = "delete from t_g_goods_img where goods_id='"+ goodsId +"'";
         		System.out.println(sql_del_goodsimg);
         		st.executeUpdate(sql_del_goodsimg);
-        		//Í¼Æ¬´æÈë
+        		//å›¾ç‰‡å­˜å…¥
         		for(int i=0;i<imgUrl.size();i++ ){
         			String sql_goodsImg = "INSERT INTO `muyin_db`.`t_g_goods_img`(`goods_id`,`value`)\n" +
             				"VALUES (\""+ goodsId +"\",\""+ "/hia/goodsimg/" + imgUrl.get(i) +"\");";
@@ -288,10 +288,10 @@ public class MysqlUtils {
         		st.executeUpdate(sql_updateGoodImg);
         		//----------------------------------------------------------//
         	}else{
-        		//Í¼Æ¬ÏÂÔØ
-        		List<String> imgUrl = downloadPic(pics, 1);//´óÍ¼
-        		String smallImgUrl = downloadSmallPic(smallPic, 1);//Ğ¡Í¼Ò»ÕÅ
-        		//Í¼Æ¬´æÈë
+        		//å›¾ç‰‡ä¸‹è½½
+        		List<String> imgUrl = downloadPic(pics, 1);//å¤§å›¾
+        		String smallImgUrl = downloadSmallPic(smallPic, 1);//å°å›¾ä¸€å¼ 
+        		//å›¾ç‰‡å­˜å…¥
         		for(int i=0;i<imgUrl.size();i++ ){
         			String sql_goodsImg = "INSERT INTO `muyin_db`.`t_g_goods_img`(`goods_id`,`value`)\n" +
             				"VALUES (\""+ goodsId +"\",\""+ "/hia/goodsimg/" + imgUrl.get(i) +"\");";
@@ -311,14 +311,14 @@ public class MysqlUtils {
     
     
 	public static void addBrandCate(int brandId, int catId) throws Exception {
-		// 1.×¢²áÇı¶¯
+		// 1.æ³¨å†Œé©±åŠ¨
         Class.forName("com.mysql.jdbc.Driver");
 
-        // 2.½¨Á¢Á¬½Ó url¸ñÊ½ - JDBC:×ÓĞ­Òé:×ÓÃû³Æ//Ö÷»úÃû:¶Ë¿Ú/Êı¾İ¿âÃû£¿ÊôĞÔÃû=ÊôĞÔÖµ&¡­
+        // 2.å»ºç«‹è¿æ¥ urlæ ¼å¼ - JDBC:å­åè®®:å­åç§°//ä¸»æœºå:ç«¯å£/æ•°æ®åº“åï¼Ÿå±æ€§å=å±æ€§å€¼&â€¦
 //        Connection conn = DriverManager.getConnection("jdbc:mysql://121.40.63.10:3306/muyin_db", "root", "root");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/muyin_db", "root", "root");//±¾µØÊı¾İ¿â
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/muyin_db", "root", "root");//æœ¬åœ°æ•°æ®åº“
 
-        // 3.´´½¨Óï¾ä
+        // 3.åˆ›å»ºè¯­å¥
         Statement st = conn.createStatement();
         
         List<Integer> cat_id = new ArrayList<Integer>(); 
@@ -341,7 +341,7 @@ public class MysqlUtils {
         	String sql_brandcateId = "select * from t_g_brand_cate where brand_id ='"+ brandId +"' and cate_id ='"+ cat_id.get(i) +"'";
         	ResultSet rs_brandcateId = st.executeQuery(sql_brandcateId);
         	if(rs_brandcateId.next()){
-        		//ÒÑ´æÔÚÊı¾İ£¬²»²åÈë
+        		//å·²å­˜åœ¨æ•°æ®ï¼Œä¸æ’å…¥
         	}else{
         		String sql_brandCate = "INSERT INTO `muyin_db`.`t_g_brand_cate`(`brand_id`,`cate_id`)\n" +
         				"VALUES (\""+ brandId +"\",\""+ cat_id.get(i) +"\");";
@@ -352,8 +352,8 @@ public class MysqlUtils {
         }
 	}
 	
-	//ÏÂÔØÍ¼Æ¬º¯Êı
-	private static List<String> downloadPic(List<String> pics, int times) throws Exception{//´óÍ¼
+	//ä¸‹è½½å›¾ç‰‡å‡½æ•°
+	private static List<String> downloadPic(List<String> pics, int times) throws Exception{//å¤§å›¾
 		System.out.println(pics.get(0));
 		List<String> imgUrl = new ArrayList<String>();
         String dateStr = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
@@ -379,7 +379,7 @@ public class MysqlUtils {
 		return imgUrl;
 	}
 	
-	private static String downloadSmallPic(String pics, int times) throws Exception{//Ğ¡Í¼		
+	private static String downloadSmallPic(String pics, int times) throws Exception{//å°å›¾		
     	String dateStr = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());       
     	String dateStrUrl = dateStr + "_0.jpg";
 		URL url;
@@ -403,14 +403,14 @@ public class MysqlUtils {
 	//zara
     /*public static void addTggoods(TGGoods goods, String goodsSn, int brandId, String smallPic) throws Exception {
 
-        // 1.×¢²áÇı¶¯
+        // 1.æ³¨å†Œé©±åŠ¨
         Class.forName("com.mysql.jdbc.Driver");
 
-        // 2.½¨Á¢Á¬½Ó url¸ñÊ½ - JDBC:×ÓĞ­Òé:×ÓÃû³Æ//Ö÷»úÃû:¶Ë¿Ú/Êı¾İ¿âÃû£¿ÊôĞÔÃû=ÊôĞÔÖµ&¡­
+        // 2.å»ºç«‹è¿æ¥ urlæ ¼å¼ - JDBC:å­åè®®:å­åç§°//ä¸»æœºå:ç«¯å£/æ•°æ®åº“åï¼Ÿå±æ€§å=å±æ€§å€¼&â€¦
 //        Connection conn = DriverManager.getConnection("jdbc:mysql://121.40.63.10:3306/muyin_db", "root", "root");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/muyin_db", "root", "");//±¾µØÊı¾İ¿â
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/muyin_db", "root", "");//æœ¬åœ°æ•°æ®åº“
 
-        // 3.´´½¨Óï¾ä
+        // 3.åˆ›å»ºè¯­å¥
         Statement st = conn.createStatement();
         
         List<String> colors = goods.getColor();
@@ -422,46 +422,46 @@ public class MysqlUtils {
 		}
         
         
-        String sql_attrColorId = "select * from t_g_attribute where cat_id ='"+ goods.getCatId() +"' and attr_name='ÑÕÉ«'";
+        String sql_attrColorId = "select * from t_g_attribute where cat_id ='"+ goods.getCatId() +"' and attr_name='é¢œè‰²'";
         ResultSet rs_attrColorId = st.executeQuery(sql_attrColorId);
         int attr_id=0;
         if(rs_attrColorId.next()){
         	attr_id = rs_attrColorId.getInt("attr_id");
         }
-//        System.out.println(attr_id);//²âÊÔ
+//        System.out.println(attr_id);//æµ‹è¯•
         String sql_rangeValue = "select * from t_g_attr_range where attr_id='"+ attr_id +"'";
         ResultSet rs_rangeValue = st.executeQuery(sql_rangeValue);
         List<String> rangeValue = new ArrayList<String>();
         while(rs_rangeValue.next()){
         	rangeValue.add(rs_rangeValue.getString("rangeValue"));
         }        
-        if(rangeValue.size()>0){//ÒÑÓĞÊôĞÔÖµ£¬×öÅĞ¶Ï
+        if(rangeValue.size()>0){//å·²æœ‰å±æ€§å€¼ï¼Œåšåˆ¤æ–­
         	for(int i=0;i<colors.size();i++){
         		Boolean flag = true;
         		for(int j=0;j<rangeValue.size();j++){
-//        			System.out.println(rs_rangeValue.getString("rangeValue")+"lallalalala");//²âÊÔ
+//        			System.out.println(rs_rangeValue.getString("rangeValue")+"lallalalala");//æµ‹è¯•
         			if(rangeValue.get(j).equals(colors.get(i))){
         				flag = false;
         			}
         		}//
-        		if(flag){//ÅĞ¶ÏÄ³¸öÊôĞÔÖµ»¹Ã»´æÈë£¬¾Í²åÈë
+        		if(flag){//åˆ¤æ–­æŸä¸ªå±æ€§å€¼è¿˜æ²¡å­˜å…¥ï¼Œå°±æ’å…¥
         			String sql_tgattrrange = "INSERT INTO `muyin_db`.`t_g_attr_range`(`attr_id`,`rangeValue`)\n" +
         	                "VALUES (\""+ attr_id +"\",\""+colors.get(i)+"\");";
         			System.out.println(sql_tgattrrange);
         			st.executeUpdate(sql_tgattrrange);
         		}
-        		else{//Ä³¸öÊôĞÔÖµÒÑ¾­´æÈë£¬²»×÷´¦Àí
-        			System.out.println("À©Õ¹ÊôĞÔÖµÒÑ´æÔÚ");//²âÊÔ
+        		else{//æŸä¸ªå±æ€§å€¼å·²ç»å­˜å…¥ï¼Œä¸ä½œå¤„ç†
+        			System.out.println("æ‰©å±•å±æ€§å€¼å·²å­˜åœ¨");//æµ‹è¯•
         		} 
         		
         	}
         }
-        else{//»¹Ã»ÓĞÊôĞÔÖµ£¬¾ÍÖ±½Ó²åÈë
+        else{//è¿˜æ²¡æœ‰å±æ€§å€¼ï¼Œå°±ç›´æ¥æ’å…¥
         	for(int j=0;j<colors.size();j++){
         		String sql_tgattrrange = "INSERT INTO `muyin_db`.`t_g_attr_range`(`attr_id`,`rangeValue`)\n" +
     	                "VALUES (\""+ attr_id +"\",\""+colors.get(j)+"\");";
         		System.out.println(sql_tgattrrange);
-//        		System.out.println("66666666");//²âÊÔ
+//        		System.out.println("66666666");//æµ‹è¯•
         		st.executeUpdate(sql_tgattrrange);
         	}
         }
@@ -475,7 +475,7 @@ public class MysqlUtils {
         while(rs.next()){
         	goods_Ids.add(rs.getInt("goods_id"));
         }
-        List<Integer> attrRangeId = new ArrayList<Integer>();//´æ·Å±àºÅÏàÍ¬µÄÒÑ´æÈëÊı¾İ¿âµÄÉÌÆ·µÄÊôĞÔÖµID
+        List<Integer> attrRangeId = new ArrayList<Integer>();//å­˜æ”¾ç¼–å·ç›¸åŒçš„å·²å­˜å…¥æ•°æ®åº“çš„å•†å“çš„å±æ€§å€¼ID
         for(int i=0;i<goods_Ids.size();i++){
         	String sql_attrRangeId = "select * from t_g_goods_attr where goods_id ='"+ goods_Ids.get(i) +"'";
         	ResultSet rs_attrRangeId = st.executeQuery(sql_attrRangeId);
@@ -485,7 +485,7 @@ public class MysqlUtils {
         }
         String sql_Cat_Range_Id = "select * from t_g_attr_range where attr_id='"+ attr_id +"' and rangeValue='"+ colors.get(0) +"'";
         ResultSet rs_Cat_Range_Id = st.executeQuery(sql_Cat_Range_Id);
-        int cat_Range_Id=0;//´æ·Å±¾ÉÌÆ·µÄÊôĞÔÖµID
+        int cat_Range_Id=0;//å­˜æ”¾æœ¬å•†å“çš„å±æ€§å€¼ID
         while(rs_Cat_Range_Id.next()){
         	cat_Range_Id = rs_Cat_Range_Id.getInt("cat_range_id");
         }
@@ -497,7 +497,7 @@ public class MysqlUtils {
         }
         
         
-        if(goods_flag){//ÒÑÓĞÕâÌõÊı¾İ        	
+        if(goods_flag){//å·²æœ‰è¿™æ¡æ•°æ®        	
         	String sql_goodsId = "select * from t_g_goods_attr where attr_range_id ='"+ cat_Range_Id +"'";
         	ResultSet rs_goodsId = st.executeQuery(sql_goodsId);
         	int goodsId=0;
@@ -508,11 +508,11 @@ public class MysqlUtils {
         	ResultSet rs_tggoods = st.executeQuery(sql_tggoods);
         	if(rs_tggoods.next()){
         		if(rs_tggoods.getString("goods_name").equals(goods.getGoodsName())&&rs_tggoods.getDouble("o_price")==goods.getoPrice()&&
-            			rs_tggoods.getDouble("n_price")==goods.getnPrice()&&rs_tggoods.getInt("cat_id")==goods.getCatId()){//×Ö¶ÎÊı¾İ¶¼Ã»±ä»¯£¬¾Í²»×÷´¦Àí
+            			rs_tggoods.getDouble("n_price")==goods.getnPrice()&&rs_tggoods.getInt("cat_id")==goods.getCatId()){//å­—æ®µæ•°æ®éƒ½æ²¡å˜åŒ–ï¼Œå°±ä¸ä½œå¤„ç†
             		
-    				System.out.println("ÉÌÆ·Êı¾İÎŞ±ä»¯");
+    				System.out.println("å•†å“æ•°æ®æ— å˜åŒ–");
             	}
-            	else{//Ö»Òª×Ö¶ÎÊı¾İÓĞ±ä»¯£¬¾Í¸üĞÂ       		
+            	else{//åªè¦å­—æ®µæ•°æ®æœ‰å˜åŒ–ï¼Œå°±æ›´æ–°       		
             		String sql_update = "update t_g_goods set goods_name='"+ goods.getGoodsName() +"',o_price='"+ goods.getoPrice() +"',n_price='"+ 
             				goods.getnPrice() +"',cat_id='"+ goods.getCatId() +"' where goods_id ='"+ goodsId +"'";
             		
@@ -523,7 +523,7 @@ public class MysqlUtils {
         	}
         	        	
         }
-        else{//»¹Ã»ÓĞÕâÌõÊı¾İ£¬¾Í²åÈëÊı¾İ
+        else{//è¿˜æ²¡æœ‰è¿™æ¡æ•°æ®ï¼Œå°±æ’å…¥æ•°æ®
         	
             String sql = "INSERT INTO `muyin_db`.`t_g_goods`(`goods_name`,`o_price`,`n_price`,`goods_desc`,`goods_sn`,`g_url`,`brand_id`,`add_time`,`cat_id`)\n" +
                 "VALUES (\""+ goods.getGoodsName() +"\",\""+goods.getoPrice()+"\",\""+goods.getnPrice()+"\",\""+goods.getGoodsDesc()+"\",\""+goods.getGoodsSn()+
@@ -541,7 +541,7 @@ public class MysqlUtils {
       ResultSet rs_goodsID = st.executeQuery(sql_goodsID);
       if(rs_goodsID.next()){
       	int goodsId = rs_goodsID.getInt("goods_id"); 
-      	//ÉÌÆ·À©Õ¹ÊôĞÔ´æÈë
+      	//å•†å“æ‰©å±•å±æ€§å­˜å…¥
       	String sql_CatRangeId = "select * from t_g_attr_range where attr_id='"+ attr_id +"' and rangeValue='"+ colors.get(0) +"'";
           ResultSet rs_CatRangeId = st.executeQuery(sql_CatRangeId);
       	if(rs_CatRangeId.next()){
@@ -549,7 +549,7 @@ public class MysqlUtils {
           	String sql_goodsId = "select * from t_g_goods_attr where goods_id='"+ goodsId +"'";
               ResultSet rs_goodsId = st.executeQuery(sql_goodsId);
           	if(rs_goodsId.next()){
-          		//ÒÑ´æÔÚ¸ÃÉÌÆ·¾Í²»²åÈëÊı¾İ
+          		//å·²å­˜åœ¨è¯¥å•†å“å°±ä¸æ’å…¥æ•°æ®
           	}
           	else{
           		String sql_goodsAttr = "INSERT INTO `muyin_db`.`t_g_goods_attr`(`goods_id`,`attr_range_id`)\n" +
@@ -558,21 +558,21 @@ public class MysqlUtils {
           		st.executeUpdate(sql_goodsAttr);
           	}
           }
-      	//Í¼Æ¬´æÈë
+      	//å›¾ç‰‡å­˜å…¥
       	String sql_goods_img = "select * from t_g_goods_img where goods_id='"+ goodsId +"'";
       	ResultSet rs_goods_img = st.executeQuery(sql_goods_img);
       	if(rs_goods_img.next()){
-      		//¸ÃÉÌÆ·Í¼Æ¬ÒÑ´æÔÚ£¬²»²åÈë
-      		System.out.println("Í¼Æ¬ÒÑ´æÔÚ");
+      		//è¯¥å•†å“å›¾ç‰‡å·²å­˜åœ¨ï¼Œä¸æ’å…¥
+      		System.out.println("å›¾ç‰‡å·²å­˜åœ¨");
       		//-----------------------------------------------------------//
-//      		System.out.println(pics.get(0));//²âÊÔ
-      		List<String> imgUrl = downloadPic(pics, 1);//´óÍ¼
-      		String smallImgUrl = downloadSmallPic(smallPic, 1);//Ğ¡Í¼Ò»ÕÅ
-      		//É¾³ıÔ­À´¸ÃÉÌÆ·ËùÓĞµÄÍ¼Æ¬Â·¾¶
+//      		System.out.println(pics.get(0));//æµ‹è¯•
+      		List<String> imgUrl = downloadPic(pics, 1);//å¤§å›¾
+      		String smallImgUrl = downloadSmallPic(smallPic, 1);//å°å›¾ä¸€å¼ 
+      		//åˆ é™¤åŸæ¥è¯¥å•†å“æ‰€æœ‰çš„å›¾ç‰‡è·¯å¾„
       		String sql_del_goodsimg = "delete from t_g_goods_img where goods_id='"+ goodsId +"'";
       		System.out.println(sql_del_goodsimg); 
       		st.executeUpdate(sql_del_goodsimg);
-      		//Í¼Æ¬´æÈë
+      		//å›¾ç‰‡å­˜å…¥
       		for(int i=0;i<imgUrl.size();i++ ){
       			String sql_goodsImg = "INSERT INTO `muyin_db`.`t_g_goods_img`(`goods_id`,`value`)\n" +
           				"VALUES (\""+ goodsId +"\",\""+ "/hia/goodsimg/" + imgUrl.get(i) +"\");";
@@ -584,10 +584,10 @@ public class MysqlUtils {
       		st.executeUpdate(sql_updateGoodImg);
       		//----------------------------------------------------------//
       	}else{
-      		//Í¼Æ¬ÏÂÔØ
-      		List<String> imgUrl = downloadPic(pics, 1);//´óÍ¼
-      		String smallImgUrl = downloadSmallPic(smallPic, 1);//Ğ¡Í¼Ò»ÕÅ
-      		//Í¼Æ¬´æÈë
+      		//å›¾ç‰‡ä¸‹è½½
+      		List<String> imgUrl = downloadPic(pics, 1);//å¤§å›¾
+      		String smallImgUrl = downloadSmallPic(smallPic, 1);//å°å›¾ä¸€å¼ 
+      		//å›¾ç‰‡å­˜å…¥
       		for(int i=0;i<imgUrl.size();i++ ){
       			String sql_goodsImg = "INSERT INTO `muyin_db`.`t_g_goods_img`(`goods_id`,`value`)\n" +
           				"VALUES (\""+ goodsId +"\",\""+ "/hia/goodsimg/" + imgUrl.get(i) +"\");";

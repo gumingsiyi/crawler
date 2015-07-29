@@ -5,21 +5,21 @@ import java.util.List;
 
 public class TGGoods {
 	private Integer goodsId;
-	private String goodsName;//¡¢¡¢¡¢¡¢
-	private String goodsDesc;//¡¢¡¢¡¢¡¢
-	private String goodsSn;//¡¢¡¢¡¢¡¢//ÉÌÆ·±àºÅ¡¢
-	private Integer catId;//ÉÌÆ··ÖÀà
+	private String goodsName;//ã€ã€ã€ã€
+	private String goodsDesc;//ã€ã€ã€ã€
+	private String goodsSn;//ã€ã€ã€ã€//å•†å“ç¼–å·ã€
+	private Integer catId;//å•†å“åˆ†ç±»
 	private Integer brandId;
-	private String gUrl;//¡¢¡¢¡¢¡¢
-	private double oPrice=0.00;//¡¢¡¢¡¢¡¢//Ô­¼Û
-	private double nPrice=0.00;//¡¢¡¢¡¢¡¢//ÏÖ¼Û
-	private Date addTime;//¡¢¡¢¡¢¡¢
-	List<String> pic;//¡¢¡¢¡¢¡¢
-	List<String> color;//¡¢¡¢¡¢¡¢
+	private String gUrl;//ã€ã€ã€ã€
+	private double oPrice=0.00;//ã€ã€ã€ã€//åŸä»·
+	private double nPrice=0.00;//ã€ã€ã€ã€//ç°ä»·
+	private Date addTime;//ã€ã€ã€ã€
+	List<String> pic;//ã€ã€ã€ã€
+	List<String> color;//ã€ã€ã€ã€
 	private String imgSmall;
 	
-	private String goodsBrief;//ÔİÎŞÓÃ´¦
-	private String keyword;//ÔİÎŞÓÃ´¦
+	private String goodsBrief;//æš‚æ— ç”¨å¤„
+	private String keyword;//æš‚æ— ç”¨å¤„
 	private Integer clickCount = 0;
 	private Integer eavCount=0;
 	private Integer dreamCount=0;

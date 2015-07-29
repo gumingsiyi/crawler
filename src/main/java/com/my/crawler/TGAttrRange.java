@@ -3,7 +3,7 @@ package com.my.crawler;
 import java.util.Date;
 import java.util.List;
 
-public class TGAttrRange {//目前没用到，待用
+public class TGAttrRange {//鐩墠娌＄敤鍒帮紝寰呯敤
 	
 	private Integer catRangeId;
 	private Integer attrId;
