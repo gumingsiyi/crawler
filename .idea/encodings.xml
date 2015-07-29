@@ -2,5 +2,13 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java/com/my/crawler/Crawler_zara.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/crawler/HTTPUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/crawler/JsoupUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/crawler/MysqlUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/crawler/Product.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/crawler/TGAttrRange.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/crawler/TGGoods.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/crawler/TGGoodsAttr.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/crawler/Crawler_converse.java" charset="UTF-8" />
   </component>
 </project>
