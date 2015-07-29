@@ -33,7 +33,7 @@ public class Crawler_uniqlo {
             int i = 0;
             for(String url:urls) {
                 System.out.println(url);
-                Thread.sleep(100);
+                Thread.sleep(500);
                 String finalUrl = url;
                 TGGoods good = getAllAttributes(finalUrl,cat_id[cnt]);
                 if(good.getColor().size()==0) continue;
