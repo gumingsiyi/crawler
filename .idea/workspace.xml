@@ -28,17 +28,15 @@
     <favorites_list name="crawler" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.61133605">
       <split-first>
         <leaf>
           <file leaf-file-name="Crawler_test.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/crawler/Crawler_test.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
+                  <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -46,21 +44,12 @@
           <file leaf-file-name="Crawler_forever21.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/crawler/Crawler_forever21.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.1764706">
-                  <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
+                <state vertical-scroll-proportion="1.0171568">
+                  <caret line="80" column="34" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="e#3186#3194#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pom.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -72,8 +61,8 @@
           <file leaf-file-name="Crawler_uniqlo.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/crawler/Crawler_uniqlo.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="2.245098">
-                  <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
+                <state vertical-scroll-proportion="0.44852942">
+                  <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
                   <folding />
                 </state>
               </provider>
@@ -112,9 +101,9 @@
         <option value="$PROJECT_DIR$/src/main/java/WebCollectorExample/src/main/java/cn/edu/hfut/dmic/webcollector/example/util/PageUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/WebCollector/src/main/java/cn/edu/hfut/dmic/webcollector/net/Proxys.java" />
         <option value="$PROJECT_DIR$/WebCollectorExample/src/main/java/cn/edu/hfut/dmic/webcollector/example/util/PageUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/crawler/Crawler_uniqlo.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/crawler/YahooCrawler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/crawler/Crawler_uniqlo.java" />
         <option value="$PROJECT_DIR$/src/main/java/crawler/Crawler_test.java" />
         <option value="$PROJECT_DIR$/src/main/java/crawler/Crawler_forever21.java" />
       </list>
@@ -708,12 +697,12 @@
       <workItem from="1438222699153" duration="679000" />
       <workItem from="1438223721357" duration="1284000" />
       <workItem from="1438225385235" duration="2575000" />
-      <workItem from="1438232311306" duration="5038000" />
+      <workItem from="1438232311306" duration="8300000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39877000" />
+    <option name="totallyTimeSpent" value="43139000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="23" width="1280" height="730" extended-state="6" />
@@ -1583,30 +1572,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crawler/Crawler_test.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/crawler/Crawler_uniqlo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.44852942">
+          <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/crawler/Crawler_uniqlo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/crawler/Crawler_test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.245098">
-          <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/crawler/Crawler_forever21.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1764706">
-          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
+        <state vertical-scroll-proportion="1.0171568">
+          <caret line="80" column="34" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3186#3194#0" expanded="true" />
           </folding>
         </state>
       </provider>

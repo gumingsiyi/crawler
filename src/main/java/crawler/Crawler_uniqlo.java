@@ -53,14 +53,14 @@ public class Crawler_uniqlo {
         //name
         String name = JsoupUtils.getOneTextByClass(content, "detail-hd");
         System.out.println(name);
-        //����
+        //description
         String des=null;
-        //����
+        //link
         String gUrl = finalUrl;
-        //���ʱ��
+        //time
         Date date = new Timestamp(System.currentTimeMillis());
         System.out.println(date);
-        //��ɫ
+        //color
         List<String> temp = JsoupUtils.selectTexts(content, "[data-value^=1627207]");
         List<String> colorList = new ArrayList<String>();
         for (String color: temp) {
