@@ -10,5 +10,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/my/crawler/TGGoods.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/my/crawler/TGGoodsAttr.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/Crawler_converse.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/crawler/Crawler_uniqlo.java" charset="UTF-8" />
   </component>
 </project>

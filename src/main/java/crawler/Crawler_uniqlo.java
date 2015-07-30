@@ -37,8 +37,8 @@ public class Crawler_uniqlo {
                 String finalUrl = url;
                 TGGoods good = getAllAttributes(finalUrl,cat_id[cnt]);
                 if(good.getColor().size()==0) continue;
-                MysqlUtils.addBrandCate(BRAND_ID, cat_id[cnt]);
-                MysqlUtils.addTggoods(good, good.getGoodsSn(), BRAND_ID, smallImg.get(i++));
+                //MysqlUtils.addBrandCate(BRAND_ID, cat_id[cnt]);
+                //MysqlUtils.addTggoods(good, good.getGoodsSn(), BRAND_ID, smallImg.get(i++));
                 System.out.println(count++);
             }
         }
@@ -53,14 +53,14 @@ public class Crawler_uniqlo {
         //name
         String name = JsoupUtils.getOneTextByClass(content, "detail-hd");
         System.out.println(name);
-        //ÃèÊö
+        //ï¿½ï¿½ï¿½ï¿½
         String des=null;
-        //Á´½Ó
+        //ï¿½ï¿½ï¿½ï¿½
         String gUrl = finalUrl;
-        //Ìí¼ÓÊ±¼ä
+        //ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
         Date date = new Timestamp(System.currentTimeMillis());
         System.out.println(date);
-        //ÑÕÉ«
+        //ï¿½ï¿½É«
         List<String> temp = JsoupUtils.selectTexts(content, "[data-value^=1627207]");
         List<String> colorList = new ArrayList<String>();
         for (String color: temp) {
@@ -69,10 +69,10 @@ public class Crawler_uniqlo {
             colorList.add(color);
         }
         System.out.println(colorList);
-        //´óÍ¼
+        //ï¿½ï¿½Í¼
         List<String> pic = JsoupUtils.selectSAttr(content, "[href*=taobaocdn]", "href");
         System.out.println(pic);
-        //ÉÌÆ·±àºÅ
+        //ï¿½ï¿½Æ·ï¿½ï¿½ï¿½
         String sn = JsoupUtils.selectS(content, "[title *= UQ]");
         sn = sn.substring(4);
         System.out.println(sn);
