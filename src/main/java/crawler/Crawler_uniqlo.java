@@ -14,18 +14,35 @@ public class Crawler_uniqlo {
     private static final int BRAND_ID = 16;
     public static void main(String[] args) throws Exception {
         System.out.println("==start u==");
-        int[] cat_id = {0, 0, 0, 0, 0, 0, 34, 31, 35, 31, 44, 32, 51, 52, 38, 36, 42, 43, 41, 44, 48, 66, 67, 65, 69, 65, 65, 65, 41, 43, 74, 86, 90};
+        int[] cat_id = {
+                0, 0, 0, 0, 0,
+                34,
+                51, 53,
+                31, 35, 31,
+                38,
+                32,
+                56, 58,
+                42, 43, 43, 41,
+                68, 66, 67, 68, 69, 66, 68,
+                68, 43, 74,
+                86, 90,
+                0
+                };
         String html_uniqlo_women = HTTPUtils.getByURL("http://www.uniqlo.cn/#!women");
         //System.out.println(html_uniqlo_women);
+        System.out.println(cat_id.length);
         List<String> pageUrl = JsoupUtils.selectSAttr(html_uniqlo_women, "div#list_women>ul.sub>li>a", "href");
-        //System.out.println(pageUrl);
+        System.out.println(pageUrl);
         int cnt = 0;
         int count = 0;
         System.out.println(pageUrl.size());
         for (String page:pageUrl) {
             String html_page = HTTPUtils.getByURL(page);
-            if (cnt++ <= 4) continue;
-            if (cnt >= 33) continue;
+            if (cnt <= 4) {
+                cnt++;
+                continue;
+            }
+            if (cnt >= 31) continue;
             System.out.println(cnt+": "+page);
             List<String> urls = JsoupUtils.getAttrsByClass(html_page, "permalink", "href");
             List<String> smallImg = JsoupUtils.selectSAttr(html_page, "div.pic>a>img", "data-ks-lazyload");
@@ -41,6 +58,7 @@ public class Crawler_uniqlo {
                 //MysqlUtils.addTggoods(good, good.getGoodsSn(), BRAND_ID, smallImg.get(i++));
                 System.out.println(count++);
             }
+            cnt++;
         }
     }
 
