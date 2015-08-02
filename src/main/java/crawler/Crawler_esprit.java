@@ -19,18 +19,7 @@ public class Crawler_esprit {
     public static void main(String[] args) throws Exception {
         System.out.println("==start e==");
         int[] cat_id = {
-                0, 0, 0, 0, 0,
-                34,
-                51, 53,
-                31, 35, 31,
-                38,
-                32,
-                56, 58,
-                42, 43, 43, 41,
-                68, 66, 67, 68, 69, 66, 68,
-                68, 43, 74,
-                86, 90,
-                0
+            51, 31, 34, 52, 42, 43, 41, 57, 38, 32, 66, 0, 73, 83, 90, 82, 86, 87, 89
         };
         String html_esprit = HTTPUtils.getByURL("http://www.esprit.cn/products/2---------.htm");
 
@@ -44,7 +33,7 @@ public class Crawler_esprit {
             String[] pageUrl = temp_pageUrls.get(i).split("'");
             String temp = pageUrl[1];
             temp = temp.substring(0, pageUrl[1].length()-4);
-            System.out.println(names.get(i)+": "+temp);
+            System.out.println(i+": "+names.get(i)+": "+temp);
 
             for (int j = 1;; j++) {
                 //当这页没有商品链接时，说明这个商品已经全部完成了
