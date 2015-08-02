@@ -27,7 +27,7 @@ public class Crawler_esprit {
         //System.out.println(temp_pageUrls.size());
         List<String> names = JsoupUtils.selectTexts(html_esprit, "div.nav_left>dl.hover:gt(2)>dd>ul>li>a");
         //System.out.println(names.size());
-
+        int count = 0;
         for (int i = 0; i < temp_pageUrls.size(); i++) {
             if (i == 11) continue;
             String[] pageUrl = temp_pageUrls.get(i).split("'");
@@ -39,14 +39,16 @@ public class Crawler_esprit {
                 //当这页没有商品链接时，说明这个商品已经全部完成了
                 String page = HTTPUtils.getByURL(ESPRIT_URL + temp + "/scroll.htm?page=" + j + "&c7=&c8=&c10=");
                 List<String> thingUrls = JsoupUtils.selectSAttr(page, "div.sku_title>a", "href");
-                List<String> pictures = JsoupUtils.selectSAttr(page, "div.sku_pic>a>img1", "src");
+                List<String> pictures = JsoupUtils.selectSAttr(page, "div.sku_pic>a>img", "src");
+                System.out.println(pictures);
                 if (thingUrls.size() == 0) break;
                 int cnt = 0;
                 for (String thingUrl: thingUrls) {
+                    System.out.println(++count);
                     thingUrl = ESPRIT_URL+thingUrl;
-                    System.out.println(thingUrl);
+                    //System.out.println(thingUrl);
                     //MysqlUtils.addBrandCate(BRAND_ID, cat_id[i]);
-                    TGGoods good = getAllAttributes(thingUrl, cat_id[i]);
+                    //TGGoods good = getAllAttributes(thingUrl, cat_id[i]);
                     //MysqlUtils.addTggoods(good, good.getGoodsSn(), BRAND_ID, pictures.get(cnt++));
                 }
             }
