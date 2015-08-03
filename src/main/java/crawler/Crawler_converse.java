@@ -14,68 +14,106 @@ import java.util.List;
  * Created by Administrator on 2015/7/29.
  */
 public class Crawler_converse {
-    private static final int BRAND_ID = 17;
+    private static final int BRAND_ID = 19;
     private static final String WEB_URL = "http://www.converse.com.cn";
     public static void main(String[] args) throws Exception {
-        System.out.println("==start u==");
-        int[] cat_id = {};
-        String html_converse_women = HTTPUtils.getByURL("http://www.converse.com.cn/index.htm?iid=tplg06012015");
-        //System.out.println(html_uniqlo_women);
-        List<String> pageUrl = JsoupUtils.selectSAttr(html_converse_women, "div.navigation-expanded>ul>li>a", "href");
-        //System.out.println(pageUrl);
-       /* int cnt = 0;
-        int count = 0;*/
-        System.out.println(pageUrl.size());
-        for (int i = 9; i <= 11; i++) {
-            String page = WEB_URL+pageUrl.get(i);
-            //System.out.println(page);
-            String html_page = HTTPUtils.getByURL(page);
-            
+        System.out.println("==start converse==");
+        int[] cat_id = {
+                71,
+                51,
+                34,
+                31,
+                57,
+                40,
+                38,
+                38,
+                78,
+                88,
+                89,
+                69,
+                89
+        };
+        String[] websites = {
+                "http://www.converse.com.cn/women-sneakers/category.htm?iid=tpnvfc06012015&attributeParams=&propertyCode=&sort=gender_asc&rowsNum=1000&isPaging=true",
+                "http://www.converse.com.cn/women-clothing/category.htm?iid=tpnvfw06012015&attributeParams=&propertyCode=skirt&sort=gender_asc&rowsNum=1000&isPaging=true",
+                "http://www.converse.com.cn/women-clothing/category.htm?iid=tpnvfw06012015&attributeParams=&propertyCode=shirt&isPaging=true&rowsNum=1000",
+                "http://www.converse.com.cn/women-clothing/category.htm?iid=tpnvfw06012015&attributeParams=&propertyCode=tee&isPaging=true&rowsNum=1000",
+                "http://www.converse.com.cn/women-clothing/category.htm?iid=tpnvfw06012015&attributeParams=&propertyCode=jacket&isPaging=true&rowsNum=1000",
+                "http://www.converse.com.cn/women-clothing/category.htm?iid=tpnvfw06012015&attributeParams=&propertyCode=vest&isPaging=true&rowsNum=1000",
+                "http://www.converse.com.cn/women-clothing/category.htm?iid=tpnvfw06012015&attributeParams=&propertyCode=thick_knitwear&isPaging=true&rowsNum=1000",
+                "http://www.converse.com.cn/women-clothing/category.htm?iid=tpnvfw06012015&attributeParams=&propertyCode=light_knitwear&isPaging=true&rowsNum=1000",
+                "http://www.converse.com.cn/women-accessories/category.htm?iid=tpnvfa06012015&attributeParams=&propertyCode=bag&isPaging=true&rowsNum=1000",
+                "http://www.converse.com.cn/women-accessories/category.htm?iid=tpnvfa06012015&attributeParams=&propertyCode=cap&isPaging=true&rowsNum=1000",
+                "http://www.converse.com.cn/women-accessories/category.htm?iid=tpnvfa06012015&attributeParams=&propertyCode=keychain&isPaging=true&rowsNum=1000",
+                "http://www.converse.com.cn/women-accessories/category.htm?iid=tpnvfa06012015&attributeParams=&propertyCode=sock&isPaging=true&rowsNum=1000",
+                "http://www.converse.com.cn/women-accessories/category.htm?iid=tpnvfa06012015&attributeParams=&propertyCode=lace&isPaging=true&rowsNum=1000",
+        };
+        //System.out.println(cat_id.length);
+        //System.out.println(websites.length);
+        int count=0;
+        for (int i = 0; i < websites.length; i++) {
+            String website = HTTPUtils.getByURL(websites[i]);
+            List<String> finalUrls = JsoupUtils.selectSAttr(website, "dl[skuStyle]>dt>a", "href");
+            List<String> pictures = JsoupUtils.selectSAttr(website, "dl[skuStyle]>dt>a>img", "lazy_src");
+            System.out.println(pictures);
+            System.out.println(finalUrls.size());
+            System.out.println(pictures.size());
+
+            for (int j = 0; j < finalUrls.size(); j++) {
+                String finalUrl = WEB_URL+finalUrls.get(j);
+                System.out.println(finalUrl);
+                System.out.println(++count);
+                //MysqlUtils.addBrandCate(BRAND_ID, cat_id[i]);
+                TGGoods good = getAllAttributes(finalUrl, cat_id[i]);
+                //MysqlUtils.addTggoods(good, good.getGoodsSn(), BRAND_ID, pictures.get(j));
+            }
         }
     }
 
     private static TGGoods getAllAttributes(String finalUrl, int cat_Id) throws Exception {
         String content = HTTPUtils.getByURL(finalUrl);
+        TGGoods good = new TGGoods();
         //price
-        String now = JsoupUtils.selectS(content, "#J_StrPrice");
-        double price = Double.valueOf(now);
-        System.out.println(now);
+        List<String> old = JsoupUtils.selectSAttr(content, "#skuPrice", "value");
+        double price = Double.valueOf(old.get(0));
+        good.setoPrice(price);
+        System.out.println(price);
         //name
-        String name = JsoupUtils.getOneTextByClass(content, "detail-hd");
-        System.out.println(name);
+        List<String> name = JsoupUtils.selectSAttr(content, "a.jqzoom[alt]", "alt");
+        System.out.println(name.get(0));
+        good.setGoodsName(name.get(0));
         //描述
-        String des=null;
+        String des = JsoupUtils.getOneTextByClass(content, "product-description");
+        System.out.println(des);
+        good.setGoodsDesc(des);
         //链接
         String gUrl = finalUrl;
         //添加时间
         Date date = new Timestamp(System.currentTimeMillis());
         System.out.println(date);
         //颜色
-        List<String> temp = JsoupUtils.selectTexts(content, "[data-value^=1627207]");
-        List<String> colorList = new ArrayList<String>();
-        for (String color: temp) {
-            color = color.substring(3);
-            //System.out.println(color);
-            colorList.add(color);
-        }
+        List<String> colorList = JsoupUtils.selectSAttr(content, "div.other-product-list>a>img", "title");
         System.out.println(colorList);
         //大图
-        List<String> pic = JsoupUtils.selectSAttr(content, "[href*=taobaocdn]", "href");
-        System.out.println(pic);
+        List<String> picS = JsoupUtils.selectSAttr(content, "div.product-thumb-list>a", "data-img");
+        System.out.println(picS);
+        List<String> picH = new ArrayList<String>();
+        for(String pic: picS) {
+            String[] tpic = pic.split("_");
+            //System.out.println(tpic.length);
+            pic = tpic[0]+"_"+tpic[1].charAt(0)+"H_"+tpic[2];
+            picH.add(pic);
+            System.out.println(pic);
+        }
         //商品编号
-        String sn = JsoupUtils.selectS(content, "[title *= UQ]");
-        sn = sn.substring(4);
-        System.out.println(sn);
-        TGGoods good = new TGGoods();
+        List<String> sn = JsoupUtils.selectSAttr(content, "#skuCode", "value");
+
+        System.out.println(sn.get(0));
         good.setAddTime(date);
-        good.setBrandId(16);
-        good.setGoodsSn(sn);
-        good.setColor(colorList);
-        good.setGoodsName(name);
-        good.setnPrice(price);
-        good.setoPrice(price);
+        good.setBrandId(BRAND_ID);
+        good.setGoodsSn(sn.get(0));
         good.setgUrl(gUrl);
-        good.setPic(pic);
+        good.setPic(picH);
         good.setCatId(cat_Id);
 
         return good;
