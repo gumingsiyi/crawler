@@ -48,7 +48,7 @@ public class Crawler_esprit {
                     thingUrl = ESPRIT_URL+thingUrl;
                     //System.out.println(thingUrl);
                     //MysqlUtils.addBrandCate(BRAND_ID, cat_id[i]);
-                    //TGGoods good = getAllAttributes(thingUrl, cat_id[i]);
+                    TGGoods good = getAllAttributes(thingUrl, cat_id[i]);
                     //MysqlUtils.addTggoods(good, good.getGoodsSn(), BRAND_ID, pictures.get(cnt++));
                 }
             }
@@ -103,7 +103,7 @@ public class Crawler_esprit {
         good.setGoodsSn(sn.get(0));
         good.setColor(colorList);
         good.setGoodsName(name);
-
+        good.setGoodsDesc(des);
         good.setgUrl(gUrl);
         good.setPic(pic);
         good.setCatId(cat_Id);
