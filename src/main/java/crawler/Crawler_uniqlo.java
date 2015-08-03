@@ -1,5 +1,7 @@
 package crawler;
 
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.my.crawler.*;
 
 import java.sql.Timestamp;
@@ -63,7 +65,21 @@ public class Crawler_uniqlo {
     }
 
     private static TGGoods getAllAttributes(String finalUrl, int cat_Id) throws Exception {
-        String content = HTTPUtils.getByURL(finalUrl);
+        WebClient wc = new WebClient();
+
+        wc.getOptions().setJavaScriptEnabled(true); //启用JS解释器，默认为true
+        wc.getOptions().setCssEnabled(false); //禁用css支持
+        wc.getOptions().setThrowExceptionOnScriptError(false); //js运行错误时，是否抛出异常
+        wc.getOptions().setThrowExceptionOnFailingStatusCode(false);
+
+        wc.getOptions().setTimeout(10000); //设置连接超时时间 ，这里是10S。如果为0，则无限期等待
+
+        HtmlPage page = wc.getPage("http://www.uniqlo.cn/item.htm?spm=0.0.0.0.bfEgZH&id=520313132016");
+        String pageXml = page.asXml(); //以xml的形式获取响应文本
+
+        String content = pageXml;
+
+        
         //price
         String now = JsoupUtils.selectS(content, "#J_StrPrice");
         double price = Double.valueOf(now);
@@ -72,7 +88,12 @@ public class Crawler_uniqlo {
         String name = JsoupUtils.getOneTextByClass(content, "detail-hd");
         System.out.println(name);
         //description
-        String des=null;
+        List<String> texts = JsoupUtils.selectTexts(pageXml, "div.content#J_DivItemDesc>table>tbody>tr>td>p:lt(5):gt(2)");
+        String des = new String();
+        for (String text: texts) {
+            des += text;
+        }
+        System.out.println(des);
         //link
         String gUrl = finalUrl;
         //time
@@ -105,6 +126,7 @@ public class Crawler_uniqlo {
         good.setgUrl(gUrl);
         good.setPic(pic);
         good.setCatId(cat_Id);
+        good.setGoodsDesc(des);
 
         return good;
     }
