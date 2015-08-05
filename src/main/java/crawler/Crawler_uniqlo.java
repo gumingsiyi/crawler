@@ -1,8 +1,7 @@
 package crawler;
 
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.my.crawler.*;
+import org.apache.commons.lang3.StringUtils;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -65,19 +64,8 @@ public class Crawler_uniqlo {
     }
 
     private static TGGoods getAllAttributes(String finalUrl, int cat_Id) throws Exception {
-        WebClient wc = new WebClient();
 
-        wc.getOptions().setJavaScriptEnabled(true); //启用JS解释器，默认为true
-        wc.getOptions().setCssEnabled(false); //禁用css支持
-        wc.getOptions().setThrowExceptionOnScriptError(false); //js运行错误时，是否抛出异常
-        wc.getOptions().setThrowExceptionOnFailingStatusCode(false);
-
-        wc.getOptions().setTimeout(10000); //设置连接超时时间 ，这里是10S。如果为0，则无限期等待
-
-        HtmlPage page = wc.getPage(finalUrl);
-        String pageXml = page.asXml(); //以xml的形式获取响应文本
-
-        String content = pageXml;
+        String content = HTTPUtils.getByURL(finalUrl);
 
 
         //price
@@ -88,11 +76,7 @@ public class Crawler_uniqlo {
         String name = JsoupUtils.getOneTextByClass(content, "detail-hd");
         System.out.println(name);
         //description
-        List<String> texts = JsoupUtils.selectTexts(pageXml, "div.content#J_DivItemDesc>table>tbody>tr>td>p:lt(5):gt(2)");
-        String des = new String();
-        for (String text: texts) {
-            des += text;
-        }
+        String des = findDes(content);
         System.out.println(des);
         //link
         String gUrl = finalUrl;
@@ -108,16 +92,16 @@ public class Crawler_uniqlo {
             colorList.add(color);
         }
         System.out.println(colorList);
-        //��ͼ
+        //picture
         List<String> pic = JsoupUtils.selectSAttr(content, "[href*=taobaocdn]", "href");
         System.out.println(pic);
-        //��Ʒ���
+        //No.
         String sn = JsoupUtils.selectS(content, "[title *= UQ]");
         sn = sn.substring(4);
         System.out.println(sn);
         TGGoods good = new TGGoods();
         good.setAddTime(date);
-        good.setBrandId(16);
+        good.setBrandId(BRAND_ID);
         good.setGoodsSn(sn);
         good.setColor(colorList);
         good.setGoodsName(name);
@@ -129,5 +113,18 @@ public class Crawler_uniqlo {
         good.setGoodsDesc(des);
 
         return good;
+    }
+
+    private static String findDes(String page) throws Exception {
+        String des = "";
+        String url = StringUtils.substringBetween(page, "g_item_desc_requested = true;g_hubble_item_desc_requested = +new Date();})('", "');");
+        System.out.println(url);
+        String textPage = HTTPUtils.getByURL(url);
+        textPage = textPage.split("'")[1];
+        //System.out.println(textPage);
+        List<String> texts = JsoupUtils.selectTexts(textPage, "p");
+        System.out.println(texts.get(3));
+        des = texts.get(3);
+        return des;
     }
 }

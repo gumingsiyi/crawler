@@ -48,3 +48,5 @@ Temporary Items
 *.xml
 
 src/main/java/crawler/Crawler_test.java
+
+temp.html
