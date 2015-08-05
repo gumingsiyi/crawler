@@ -119,7 +119,7 @@ public class Crawler_canda {
         List<String> colorList = JsoupUtils.selectSAttr(content, "div.color>dd>a", "title");
         System.out.println(colorList);
         //pictures
-        List<String> pic = JsoupUtils.selectSAttr(content, "div.product-image>div>a>img.image", "href");
+        List<String> pic = JsoupUtils.selectSAttr(content, "div.product-image>div>a>img.image", "src");
         System.out.println(pic);
         //no.
         String sn = JsoupUtils.selectS(content, "p.availability");
