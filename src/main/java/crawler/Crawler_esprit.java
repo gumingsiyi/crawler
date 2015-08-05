@@ -99,7 +99,7 @@ public class Crawler_esprit {
         System.out.println(sn.get(0));
 
         good.setAddTime(date);
-        good.setBrandId(16);
+        good.setBrandId(BRAND_ID);
         good.setGoodsSn(sn.get(0));
         good.setColor(colorList);
         good.setGoodsName(name);

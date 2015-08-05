@@ -79,7 +79,7 @@ public class Crawler_uniqlo {
 
         String content = pageXml;
 
-        
+
         //price
         String now = JsoupUtils.selectS(content, "#J_StrPrice");
         double price = Double.valueOf(now);
