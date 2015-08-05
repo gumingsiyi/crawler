@@ -74,7 +74,7 @@ public class Crawler_uniqlo {
 
         wc.getOptions().setTimeout(10000); //设置连接超时时间 ，这里是10S。如果为0，则无限期等待
 
-        HtmlPage page = wc.getPage("http://www.uniqlo.cn/item.htm?spm=0.0.0.0.bfEgZH&id=520313132016");
+        HtmlPage page = wc.getPage(finalUrl);
         String pageXml = page.asXml(); //以xml的形式获取响应文本
 
         String content = pageXml;
