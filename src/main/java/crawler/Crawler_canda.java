@@ -6,9 +6,11 @@ import com.my.crawler.HTTPUtils;
 import com.my.crawler.JsoupUtils;
 import com.my.crawler.MysqlUtils;
 import com.my.crawler.TGGoods;
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -81,19 +83,8 @@ public class Crawler_canda {
     }
 
     private static TGGoods getAllAttributes(String finalUrl, int cat_Id, String name) throws Exception {
-        WebClient wc = new WebClient();
 
-        wc.getOptions().setJavaScriptEnabled(true); //启用JS解释器，默认为true
-        wc.getOptions().setCssEnabled(false); //禁用css支持
-        wc.getOptions().setThrowExceptionOnScriptError(false); //js运行错误时，是否抛出异常
-        wc.getOptions().setThrowExceptionOnFailingStatusCode(false);
-
-        wc.getOptions().setTimeout(10000); //设置连接超时时间 ，这里是10S。如果为0，则无限期等待
-
-        HtmlPage page = wc.getPage(finalUrl);
-        String pageXml = page.asXml(); //以xml的形式获取响应文本
-
-        String content = pageXml;
+        String content = HTTPUtils.getByURL(finalUrl);
         //System.out.println(content);
         TGGoods good = new TGGoods();
         //price
@@ -116,10 +107,13 @@ public class Crawler_canda {
         Date date = new Timestamp(System.currentTimeMillis());
         System.out.println(date);
         //color
-        List<String> colorList = JsoupUtils.selectSAttr(content, "div.color>dd>a", "title");
+        List<String> colorList = new ArrayList<String>();
+        String color = StringUtils.substringBetween(content, "var defaultColor = '", "';");
+        colorList.add(color);
         System.out.println(colorList);
         //pictures
-        List<String> pic = JsoupUtils.selectSAttr(content, "div.product-image>div>a>img.image", "src");
+        String colorNum = StringUtils.substringBetween(content, "var defaultColorId = '", "';");
+        List<String> pic = JsoupUtils.selectSAttr(content, "div.product-image>div>a." + colorNum + ">img.image", "src");
         System.out.println(pic);
         //no.
         String sn = JsoupUtils.selectS(content, "p.availability");
